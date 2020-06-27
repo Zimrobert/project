@@ -1,5 +1,6 @@
 package com.tim.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,18 +11,19 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shop")
-public class Shop {
+@Table(name = "address")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id;
     @Column
-    private String name;
+    private String country;
     @Column
-    private String type;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    private String city;
+    @Column
+    private String street;
+    @JsonIgnore
+    @OneToOne(mappedBy = "address")
+    private Shop shop;
 
 }

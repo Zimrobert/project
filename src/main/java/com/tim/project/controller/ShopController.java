@@ -30,7 +30,10 @@ public class ShopController {
     public List<Shop> getShopByName(@RequestParam String name) {
         return shopService.getShopByName(name);
     }
-
+    @RequestMapping(method = RequestMethod.GET, params = {"type"})
+    public List<Shop> getShopByType(@RequestParam String type) {
+        return shopService.getShopByName(type);
+    }
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addShop(@RequestBody Shop shop) {
         shopService.addShop(shop);
